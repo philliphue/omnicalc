@@ -117,16 +117,10 @@ end
 
     @standard_deviation = @variance ** 0.5
 
-sort = @numbers.sort
-while sort.count > 1
-    sort.each do |num|
-        if num != sort[sort.index[num]+1]
-            num.remove
-        end
-    end
-end
+incidences = @sorted_numbers.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
 
-    @mode = sort
+    @mode = @sorted_numbers.max_by { |v| incidences[v] }
+
 
     # ================================================================================
     # Your code goes above.
